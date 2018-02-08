@@ -1,12 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectHoneybee", "ProjectHoneybee.csproj", "{11D775D2-18C8-7CF9-DDE2-D880005E0AFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectHoneybee.Editor", "ProjectHoneybee.Editor.csproj", "{7DA95BA8-89FA-80F7-802B-467EA5961FF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11D775D2-18C8-7CF9-DDE2-D880005E0AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11D775D2-18C8-7CF9-DDE2-D880005E0AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11D775D2-18C8-7CF9-DDE2-D880005E0AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11D775D2-18C8-7CF9-DDE2-D880005E0AFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DA95BA8-89FA-80F7-802B-467EA5961FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DA95BA8-89FA-80F7-802B-467EA5961FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DA95BA8-89FA-80F7-802B-467EA5961FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DA95BA8-89FA-80F7-802B-467EA5961FF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
