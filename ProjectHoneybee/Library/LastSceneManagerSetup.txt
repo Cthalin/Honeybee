@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/VRTK/Examples/043_Controller_SecondaryControllerActions.unity
+=======
+- path: Assets/Scenes/Test.unity
+>>>>>>> 4313adac3baa28362f393cbef984e395a4332073
   isLoaded: 1
   isActive: 1
