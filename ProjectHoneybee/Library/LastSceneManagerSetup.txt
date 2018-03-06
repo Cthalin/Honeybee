@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Main.unity
+- path: Assets/VRTK/Examples/043_Controller_SecondaryControllerActions.unity
   isLoaded: 1
   isActive: 1

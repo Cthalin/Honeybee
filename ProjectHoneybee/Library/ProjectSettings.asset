@@ -210,6 +210,7 @@ PlayerSettings:
   tvOSSmallIconLayers: []
   tvOSSmallIconLayers2x: []
   tvOSLargeIconLayers: []
+  tvOSLargeIconLayers2x: []
   tvOSTopShelfImageLayers: []
   tvOSTopShelfImageLayers2x: []
   tvOSTopShelfImageWideLayers: []
@@ -736,7 +737,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
   cloudProjectId: 6781d800-e951-4152-8a1f-1b74d1044068
-  projectName: 
+  projectName: ProjectHoneybee
   organizationId: cthalin
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
