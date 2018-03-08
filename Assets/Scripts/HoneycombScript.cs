@@ -1,24 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
 public class HoneycombScript : MonoBehaviour {
 
-    [SerializeField]
-    private GameObject _honeycombLid;
-    [SerializeField]
-    private GameObject _outsideLight;
+    [SerializeField] private GameObject _honeycombLid;
+    [SerializeField] private GameObject _outsideLight;
 
-    [SerializeField]
-    private float _howLongToDo = 0.2f;
-    [SerializeField]
-    private float _howFarToMove = 0.02f;
-    [SerializeField]
-    private float _howMuchToAddToIntensity = 0.1f;
+    [SerializeField] private float _howLongToDo = 0.2f;
+    [SerializeField] private float _howLongToWait = 2f;
+    [SerializeField] private float _howFarToMove = 0.02f;
+    [SerializeField] private float _howMuchToAddToIntensity = 0.1f;
 
-    [SerializeField]
-    private PostProcessingProfile _profile;
+    [SerializeField] private PostProcessingProfile _profile;
+
+    private Boolean _isBlockedForMove = false;
 
     public void Move()
     {
@@ -118,7 +116,7 @@ public class HoneycombScript : MonoBehaviour {
         _profile.vignette.settings = viSettings;
     }
 
-    //Start
+    //Start Intro Vignette Reduction
     void Start()
     {
         IntroVignetteReduction();
@@ -135,11 +133,12 @@ public class HoneycombScript : MonoBehaviour {
 
             if (Physics.Raycast(_ray, out _hit, Mathf.Infinity))
             {
-                if (_hit.collider.tag == "target")
+                if (_hit.collider.tag == "target" && _isBlockedForMove == false)
                 {
                     Move();
                     ChangePPProfile();
                     ChangeLight();
+                    StartCoroutine(FixedWait());
                 }
             }
         }
@@ -147,5 +146,20 @@ public class HoneycombScript : MonoBehaviour {
         //var vignette = _profile.vignette.settings;
         //vignette.smoothness = Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup) * 0.99f) + 0.01f;
         //_profile.vignette.settings = vignette;
+    }
+
+    IEnumerator FixedWait()
+    {
+        float timer = Time.time + _howLongToWait;
+        Debug.Log("Wait");
+
+        while (Time.time < timer)
+        {
+            _isBlockedForMove = true;
+            yield return null;
+        }
+
+        _isBlockedForMove = false;
+        yield return null;
     }
 }
