@@ -43,7 +43,27 @@ public class HoneycombScript : MonoBehaviour {
     public void ChangePPProfile()
     {
         // TBD Change PPProfile Settings based on how far lid is pushed
-        
+        DoPPPChange();
+    }
+
+    IEnumerator DoPPPChange()
+    {
+        float timer = Time.time + _howLongToDo;
+
+        while (Time.time < timer)
+        {
+            BloomModel.Settings bloomSettings = _profile.bloom.settings;
+            bloomSettings.bloom.intensity += 1f;
+            _profile.bloom.settings = bloomSettings;
+
+            VignetteModel.Settings vignetteSettings = _profile.vignette.settings;
+            vignetteSettings.intensity += 1f;
+            _profile.vignette.settings = vignetteSettings;
+
+            yield return null;
+        }
+
+        yield return null;
     }
 
     public void ChangeLight()
