@@ -43,7 +43,7 @@ public class HoneycombScript : MonoBehaviour {
     public void ChangePPProfile()
     {
         // TBD Change PPProfile Settings based on how far lid is pushed
-        DoPPPChange();
+       StartCoroutine(DoPPPChange());
     }
 
     IEnumerator DoPPPChange()
@@ -53,12 +53,8 @@ public class HoneycombScript : MonoBehaviour {
         while (Time.time < timer)
         {
             BloomModel.Settings bloomSettings = _profile.bloom.settings;
-            bloomSettings.bloom.intensity += 1f;
+            bloomSettings.bloom.intensity += 0.1f;
             _profile.bloom.settings = bloomSettings;
-
-            VignetteModel.Settings vignetteSettings = _profile.vignette.settings;
-            vignetteSettings.intensity += 1f;
-            _profile.vignette.settings = vignetteSettings;
 
             yield return null;
         }
@@ -85,6 +81,49 @@ public class HoneycombScript : MonoBehaviour {
         yield return null;
     }
 
+    public void IntroVignetteReduction()
+    {
+        StartCoroutine(DoVignetteReduction());
+    }
+
+    IEnumerator DoVignetteReduction()
+    {
+        float timer = Time.time + 5f;
+        VignetteModel.Settings vignetteSettings = _profile.vignette.settings;
+
+        while (vignetteSettings.intensity > 0f)
+        {
+            vignetteSettings = _profile.vignette.settings;
+            vignetteSettings.intensity -= 0.001f;
+            _profile.vignette.settings = vignetteSettings;
+
+            if (vignetteSettings.intensity <= 0) _profile.vignette.enabled = false;
+
+            yield return null;
+        }
+
+        yield return null;
+    }
+
+    //Set start values again
+    void OnEnable()
+    {
+        BloomModel.Settings bloomSettings = _profile.bloom.settings;
+        bloomSettings.bloom.intensity = 0.5f;
+        _profile.bloom.settings = bloomSettings;
+
+        _profile.vignette.enabled = true;
+        VignetteModel.Settings viSettings = _profile.vignette.settings;
+        viSettings.intensity = 1f;
+        _profile.vignette.settings = viSettings;
+    }
+
+    //Start
+    void Start()
+    {
+        IntroVignetteReduction();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -105,8 +144,8 @@ public class HoneycombScript : MonoBehaviour {
             }
         }
 
-        var vignette = _profile.vignette.settings;
-        vignette.smoothness = Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup) * 0.99f) + 0.01f;
-        _profile.vignette.settings = vignette;
+        //var vignette = _profile.vignette.settings;
+        //vignette.smoothness = Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup) * 0.99f) + 0.01f;
+        //_profile.vignette.settings = vignette;
     }
 }
