@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PostProcessing;
 
 public class HoneycombScript : MonoBehaviour {
 
@@ -10,7 +11,9 @@ public class HoneycombScript : MonoBehaviour {
     [SerializeField]
     private float _howLongToDo = 0.2f;
     [SerializeField]
-    private float _howFarToMove = 2f;
+    private float _howFarToMove = 0.02f;
+
+    private PostProcessingProfile _profile;
 
     public void Move()
     {
@@ -32,6 +35,17 @@ public class HoneycombScript : MonoBehaviour {
         yield return null;
     }
 
+    public void ChangePPProfile()
+    {
+        // TBD Change PPProfile Settings based on how far lid is pushed
+    }
+
+    private void OnEnable()
+    {
+        _profile = GetComponent<PostProcessingBehaviour>().profile;
+        if (_profile == null) Debug.Log("Möp. Nix jefund'n.");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -46,8 +60,13 @@ public class HoneycombScript : MonoBehaviour {
                 if (_hit.collider.tag == "target")
                 {
                     Move();
+                    Debug.Log("Razulpaltuff!");
                 }
             }
         }
+
+        var vignette = _profile.vignette.settings;
+        vignette.smoothness = Mathf.Abs(Mathf.Sin(Time.realtimeSinceStartup) * 0.99f) + 0.01f;
+        _profile.vignette.settings = vignette;
     }
 }
