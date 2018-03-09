@@ -135,10 +135,11 @@ public class HoneycombScript : MonoBehaviour {
             {
                 if (_hit.collider.tag == "target" && _isBlockedForMove == false)
                 {
-                    Move();
-                    ChangePPProfile();
+                    //Move();
+                    //ChangePPProfile();
                     ChangeLight();
                     StartCoroutine(FixedWait());
+                    LidWobbleAnim();
                 }
             }
         }
@@ -151,7 +152,6 @@ public class HoneycombScript : MonoBehaviour {
     IEnumerator FixedWait()
     {
         float timer = Time.time + _howLongToWait;
-        Debug.Log("Wait");
 
         while (Time.time < timer)
         {
@@ -161,5 +161,10 @@ public class HoneycombScript : MonoBehaviour {
 
         _isBlockedForMove = false;
         yield return null;
+    }
+
+    public void LidWobbleAnim()
+    {
+        _honeycombLid.GetComponent<Animator>().Play("LidWobble");
     }
 }
