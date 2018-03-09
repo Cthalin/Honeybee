@@ -6,13 +6,15 @@ using UnityEngine.PostProcessing;
 
 public class HoneycombScript : MonoBehaviour {
 
+    [SerializeField] private GameObject gameManager;
+
     [SerializeField] private GameObject _honeycombLid;
     [SerializeField] private GameObject _outsideLight;
 
     [SerializeField] private float _howLongToDo = 0.2f;
     [SerializeField] private float _howLongToWait = 2f;
     [SerializeField] private float _howFarToMove = 0.02f;
-    [SerializeField] private float _howMuchToAddToIntensity = 0.1f;
+    [SerializeField] private float _howMuchToAddToIntensity = 0.01f;
 
     [SerializeField] private PostProcessingProfile _profile;
 
@@ -61,7 +63,7 @@ public class HoneycombScript : MonoBehaviour {
         while (Time.time < timer)
         {
             BloomModel.Settings bloomSettings = _profile.bloom.settings;
-            bloomSettings.bloom.intensity += 0.1f;
+            bloomSettings.bloom.intensity += 0.01f;
             _profile.bloom.settings = bloomSettings;
 
             yield return null;
@@ -114,8 +116,12 @@ public class HoneycombScript : MonoBehaviour {
     }
 
     //Set start values again
-    void OnEnable()
+    void Awake()
     {
+        if (GameManager.instance == null)
+            //Instantiate gameManager prefab
+            Instantiate(gameManager);
+
         BloomModel.Settings bloomSettings = _profile.bloom.settings;
         bloomSettings.bloom.intensity = 0.5f;
         _profile.bloom.settings = bloomSettings;
@@ -146,8 +152,8 @@ public class HoneycombScript : MonoBehaviour {
                 if (hit.collider.tag == "target" && _isBlockedForMove == false)
                 {
                     //Move();
-                    //ChangePPProfile();
-                    //ChangeLight();
+                    ChangePPProfile();
+                    ChangeLight();
                     StartCoroutine(FixedWait());
                     ChangeLidState();
                 }
@@ -200,6 +206,7 @@ public class HoneycombScript : MonoBehaviour {
 
             case LidState.OPEN:
                 PlayAnimation("LidPushThird");
+                gameManager.GetComponent<GameManager>().FadeIntoWhite();
                 break;
 
             default: break;
