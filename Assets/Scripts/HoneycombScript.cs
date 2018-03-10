@@ -10,6 +10,7 @@ public class HoneycombScript : MonoBehaviour {
 
     [SerializeField] private GameObject _honeycombLid;
     [SerializeField] private GameObject _outsideLight;
+    [SerializeField] private GameObject _fadeCanvas;
 
     [SerializeField] private float _howLongToDo = 0.2f;
     [SerializeField] private float _howLongToWait = 2f;
@@ -159,6 +160,11 @@ public class HoneycombScript : MonoBehaviour {
                 }
             }
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            gameManager.GetComponent<GameManager>().FadeIntoWhite(_fadeCanvas);
+        }
     }
 
     IEnumerator FixedWait()
@@ -206,7 +212,7 @@ public class HoneycombScript : MonoBehaviour {
 
             case LidState.OPEN:
                 PlayAnimation("LidPushThird");
-                gameManager.GetComponent<GameManager>().FadeIntoWhite();
+                gameManager.GetComponent<GameManager>().FadeIntoWhite(_fadeCanvas);
                 break;
 
             default: break;
