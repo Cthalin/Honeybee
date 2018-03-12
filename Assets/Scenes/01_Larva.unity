@@ -888,6 +888,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 252301155}
   m_Script: {fileID: 11500000, guid: eeda6d41317f444b900e374895f14e95, type: 3}
+--- !u!1 &267721724 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1288161961628706, guid: 71db599bdd64dd94195a40dae472e510,
+    type: 2}
+  m_PrefabInternal: {fileID: 1103900502}
 --- !u!224 &267721725 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224925209007368802, guid: 71db599bdd64dd94195a40dae472e510,
@@ -1234,7 +1239,6 @@ MonoBehaviour:
   _outsideLight: {fileID: 1550107082}
   _fadeCanvas: {fileID: 1882955814}
   _howLongToDo: 0.2
-  _howLongToWait: 2
   _howMuchToAddToIntensity: 0.1
   _profile: {fileID: 11400000, guid: fd1630fc99db55046b54a4ee6f1c67d4, type: 2}
 --- !u!4 &554917746
@@ -1268,6 +1272,7 @@ MonoBehaviour:
   - {fileID: 1595145263}
   - {fileID: 299378889}
   - {fileID: 38363230}
+  _howLongToWait: 2
 --- !u!4 &732499837 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4661047292660136, guid: d5e947037f70f37479b5acbeab184df2,
@@ -1429,6 +1434,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4585744925228522, guid: d5e947037f70f37479b5acbeab184df2,
     type: 2}
   m_PrefabInternal: {fileID: 252301155}
+--- !u!1 &951327945 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1500509198236764, guid: 71db599bdd64dd94195a40dae472e510,
+    type: 2}
+  m_PrefabInternal: {fileID: 1103900502}
 --- !u!1 &974592281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +1972,12 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1288161961628706, guid: 71db599bdd64dd94195a40dae472e510, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114174728831532876, guid: 71db599bdd64dd94195a40dae472e510, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 71db599bdd64dd94195a40dae472e510, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1119172088
@@ -2396,6 +2411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2104953966}
   - component: {fileID: 2104953965}
+  - component: {fileID: 2104953967}
   m_Layer: 0
   m_Name: FollowingMenu
   m_TagString: Untagged
@@ -2440,6 +2456,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2104953967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2104953964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b92644e63459a439876531fd76dd70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveButton: {fileID: 951327945}
+  _mainMenuPanel: {fileID: 267721724}
 --- !u!1001 &2136861884
 Prefab:
   m_ObjectHideFlags: 0
