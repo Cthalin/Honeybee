@@ -14,42 +14,42 @@ public class HoneycombScript : MonoBehaviour {
 
     [SerializeField] private float _howLongToDo = 0.2f;
     [SerializeField] private float _howLongToWait = 2f;
-    [SerializeField] private float _howFarToMove = 0.02f;
+    //[SerializeField] private float _howFarToMove = 0.02f;
     [SerializeField] private float _howMuchToAddToIntensity = 0.01f;
 
     [SerializeField] private PostProcessingProfile _profile;
 
     private Boolean _isBlockedForMove = false;
-    private LidState _stateOfLid = LidState.CLOSED;
+    //private LidState _stateOfLid = LidState.CLOSED;
 
-    private enum LidState
-    {
-        CLOSED,
-        PUSHED1,
-        PUSHED2,
-        PUSHED3,
-        OPEN
-    }
+    //private enum LidState
+    //{
+    //    CLOSED,
+    //    PUSHED1,
+    //    PUSHED2,
+    //    PUSHED3,
+    //    OPEN
+    //}
 
-    public void Move()
-    {
-        StartCoroutine(DoMove());
-    }
+    //public void Move()
+    //{
+    //    StartCoroutine(DoMove());
+    //}
 
-    IEnumerator DoMove()
-    {
-        float timer = Time.time + _howLongToDo;
+    //IEnumerator DoMove()
+    //{
+    //    float timer = Time.time + _howLongToDo;
 
-        while (Time.time < timer)
-        {
-            _honeycombLid.transform.position = new Vector3(_honeycombLid.transform.position.x, _honeycombLid.transform.position.y, _honeycombLid.transform.position.z + _howFarToMove);
+    //    while (Time.time < timer)
+    //    {
+    //        _honeycombLid.transform.position = new Vector3(_honeycombLid.transform.position.x, _honeycombLid.transform.position.y, _honeycombLid.transform.position.z + _howFarToMove);
 
-            yield return null;
-        }
+    //        yield return null;
+    //    }
 
-        //canvasGroup.interactable = false;
-        yield return null;
-    }
+    //    //canvasGroup.interactable = false;
+    //    yield return null;
+    //}
 
     public void ChangePPProfile()
     {
@@ -143,23 +143,23 @@ public class HoneycombScript : MonoBehaviour {
     void Update()
     {
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit hit;
-            Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    RaycastHit hit;
+        //    Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(_ray, out hit, Mathf.Infinity))
-            {
-                if (hit.collider.tag == "target" && _isBlockedForMove == false)
-                {
-                    //Move();
-                    ChangePPProfile();
-                    ChangeLight();
-                    StartCoroutine(FixedWait());
-                    ChangeLidState();
-                }
-            }
-        }
+        //    if (Physics.Raycast(_ray, out hit, Mathf.Infinity))
+        //    {
+        //        if (hit.collider.tag == "target" && _isBlockedForMove == false)
+        //        {
+        //            //Move();
+        //            ChangePPProfile();
+        //            ChangeLight();
+        //            StartCoroutine(FixedWait());
+        //            ChangeLidState();
+        //        }
+        //    }
+        //}
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -181,41 +181,41 @@ public class HoneycombScript : MonoBehaviour {
         yield return null;
     }
 
-    public void PlayAnimation(String animName)
-    {
-        _honeycombLid.GetComponent<Animator>().Play(animName);
-    }
+    //public void PlayAnimation(String animName)
+    //{
+    //    _honeycombLid.GetComponent<Animator>().Play(animName);
+    //}
 
-    public void ChangeLidState()
-    {
-        switch (_stateOfLid)
-        {
-            case LidState.CLOSED:
-                _stateOfLid = LidState.PUSHED1;
-                PlayAnimation("LidWobble");
-                break;
+    //public void ChangeLidState()
+    //{
+    //    switch (_stateOfLid)
+    //    {
+    //        case LidState.CLOSED:
+    //            _stateOfLid = LidState.PUSHED1;
+    //            PlayAnimation("LidWobble");
+    //            break;
 
-            case LidState.PUSHED1:
-                _stateOfLid = LidState.PUSHED2;
-                PlayAnimation("LidPushFirst");
-                break;
+    //        case LidState.PUSHED1:
+    //            _stateOfLid = LidState.PUSHED2;
+    //            PlayAnimation("LidPushFirst");
+    //            break;
 
-            case LidState.PUSHED2:
-                _stateOfLid = LidState.PUSHED3;
-                PlayAnimation("LidPushSecond");
-                break;
+    //        case LidState.PUSHED2:
+    //            _stateOfLid = LidState.PUSHED3;
+    //            PlayAnimation("LidPushSecond");
+    //            break;
 
-            case LidState.PUSHED3:
-                _stateOfLid = LidState.OPEN;
-                PlayAnimation("LidPushSecond");
-                break;
+    //        case LidState.PUSHED3:
+    //            _stateOfLid = LidState.OPEN;
+    //            PlayAnimation("LidPushSecond");
+    //            break;
 
-            case LidState.OPEN:
-                PlayAnimation("LidPushThird");
-                gameManager.GetComponent<GameManager>().FadeIntoWhite(_fadeCanvas);
-                break;
+    //        case LidState.OPEN:
+    //            PlayAnimation("LidPushThird");
+    //            gameManager.GetComponent<GameManager>().FadeIntoWhite(_fadeCanvas);
+    //            break;
 
-            default: break;
-        }
-    }
+    //        default: break;
+    //    }
+    //}
 }

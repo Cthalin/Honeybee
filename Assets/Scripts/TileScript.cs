@@ -33,7 +33,7 @@ public class TileScript : MonoBehaviour {
 
             if (Physics.Raycast(_ray, out _hit, Mathf.Infinity))
             {
-                if (_hit.collider.tag == "target" && _hit.collider.name == _tileName)
+                if (_hit.collider.tag == "target")
                 {
                     Vanish(_hit.collider.gameObject);
                     if(_tileNo > 0)
