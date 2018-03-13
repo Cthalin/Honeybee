@@ -21,6 +21,7 @@ public class TileScript : MonoBehaviour {
     public void SetTileAsTarget(int tileNo)
     {
         Tiles[tileNo].tag = "target";
+        Tiles[tileNo].GetComponent<Animator>().enabled = true;
     }
 
     void Update()
