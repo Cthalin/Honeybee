@@ -10,6 +10,12 @@ public class GuideScript : MonoBehaviour {
     private int _clipIndex = 0;
     private bool _isWaiting;
 
+    public int ClipIndex
+    {
+        get { return _clipIndex; }
+        set { _clipIndex = value; }
+    }
+
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -20,6 +26,11 @@ public class GuideScript : MonoBehaviour {
     public void changeAudioClip(int clipIndex)
     {
         _audioSource.clip = _guideSteps[_clipIndex];
+    }
+
+    public void playAudioClip()
+    {
+        _audioSource.Play();
     }
 
     IEnumerator FixedWait()

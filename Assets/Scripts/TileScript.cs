@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileScript : MonoBehaviour {
+public class TileScript : MonoBehaviour
+{
+
+    [SerializeField] private GameObject Guide;
 
     [SerializeField] GameObject[] Tiles = new GameObject[3];
     [SerializeField] private float _howLongToWait = 2f;
@@ -22,6 +25,9 @@ public class TileScript : MonoBehaviour {
     {
         Tiles[tileNo].tag = "target";
         Tiles[tileNo].GetComponent<Animator>().enabled = true;
+        Guide.GetComponent<GuideScript>().ClipIndex = Guide.GetComponent<GuideScript>().ClipIndex + 1;
+        Guide.GetComponent<GuideScript>().changeAudioClip(Guide.GetComponent<GuideScript>().ClipIndex);
+        Guide.GetComponent<GuideScript>().playAudioClip();
     }
 
     void Update()
