@@ -47,7 +47,8 @@ public class TileScript : MonoBehaviour
                         _tileNo -= 1; //Iterate Tile number
                         _tileName = Tiles[_tileNo].name;
                         SetTileAsTarget(_tileNo);
-                        StartCoroutine(FixedWait());
+                        //StartCoroutine(FixedWait());
+                        StartCoroutine(WaitForAudioClip());
                     }
                     else
                     {
@@ -87,6 +88,18 @@ public class TileScript : MonoBehaviour
         float timer = Time.time + _howLongToWait;
 
         while (Time.time < timer)
+        {
+            _isBlocked = true;
+            yield return null;
+        }
+
+        _isBlocked = false;
+        yield return null;
+    }
+
+    IEnumerator WaitForAudioClip()
+    {
+        while (Guide.GetComponent<AudioSource>().isPlaying)
         {
             _isBlocked = true;
             yield return null;
