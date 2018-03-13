@@ -72,7 +72,7 @@ public class HoneycombScript : MonoBehaviour {
         while (vignetteSettings.intensity > 0f)
         {
             vignetteSettings = _profile.vignette.settings;
-            vignetteSettings.intensity -= 0.001f;
+            vignetteSettings.intensity -= 0.01f;
             _profile.vignette.settings = vignetteSettings;
 
             if (vignetteSettings.intensity <= 0) _profile.vignette.enabled = false;
