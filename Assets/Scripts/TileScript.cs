@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VRTK;
 
 public class TileScript : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TileScript : MonoBehaviour
     private int _tileNo;
     private string _tileName;
     private Boolean _isBlocked = false;
+    private VRTK_InteractTouch interactTouch;
 
 
     private void OnEnable()
@@ -25,6 +27,7 @@ public class TileScript : MonoBehaviour
     {
         Tiles[tileNo].tag = "target";
         Tiles[tileNo].GetComponent<Animator>().enabled = true;
+        Tiles[tileNo].GetComponent<VRTK_InteractableObject>().enabled = true;
         Guide.GetComponent<GuideScript>().ClipIndex = Guide.GetComponent<GuideScript>().ClipIndex + 1;
         Guide.GetComponent<GuideScript>().changeAudioClip(Guide.GetComponent<GuideScript>().ClipIndex);
         Guide.GetComponent<GuideScript>().playAudioClip();
@@ -56,6 +59,29 @@ public class TileScript : MonoBehaviour
                         GetComponent<HoneycombScript>().SendFadeRequestToGameManager();
                     }
                 }
+            }
+        }
+    }
+
+    public void OnControllerTouchInteractableObject(GameObject touchedObj) //VR Controller Touch
+    {
+        Debug.Log("OnTouch");
+        GameObject target = touchedObj;
+        if(target.tag == "target" && !_isBlocked)
+        {
+            Vanish(target.gameObject); //Remove Tile
+            if (_tileNo > 0)
+            {
+                _tileNo -= 1; //Iterate Tile number
+                _tileName = Tiles[_tileNo].name;
+                SetTileAsTarget(_tileNo);
+                //StartCoroutine(FixedWait());
+                StartCoroutine(WaitForAudioClip());
+            }
+            else
+            {
+                //Last Tile removed
+                GetComponent<HoneycombScript>().SendFadeRequestToGameManager();
             }
         }
     }

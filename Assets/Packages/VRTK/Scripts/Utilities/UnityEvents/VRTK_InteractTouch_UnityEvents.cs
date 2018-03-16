@@ -42,9 +42,11 @@
             OnControllerStartTouchInteractableObject.Invoke(o, e);
         }
 
+        public GameObject sceneManager;
         private void ControllerTouchInteractableObject(object o, ObjectInteractEventArgs e)
         {
             OnControllerTouchInteractableObject.Invoke(o, e);
+            sceneManager.GetComponent<TileScript>().OnControllerTouchInteractableObject(e.target);
         }
 
         private void ControllerStartUntouchInteractableObject(object o, ObjectInteractEventArgs e)
