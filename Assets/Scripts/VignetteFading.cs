@@ -7,16 +7,7 @@ public class VignetteFading : MonoBehaviour {
 
     [SerializeField] private PostProcessingProfile _profile;
 
-    //Set start values again
-    void Awake()
-    {
-        //_profile.vignette.enabled = true;
-        //VignetteModel.Settings viSettings = _profile.vignette.settings;
-        //viSettings.intensity = 1f;
-        //_profile.vignette.settings = viSettings;
-    }
-
-    //Start Intro Vignette Reduction
+    //Set start values again & Start Intro Vignette Reduction
     void Start()
     {
         _profile.vignette.enabled = true;
