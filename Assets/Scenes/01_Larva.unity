@@ -1058,6 +1058,23 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 1516714699127614, guid: d5e947037f70f37479b5acbeab184df2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580205879315074, guid: d5e947037f70f37479b5acbeab184df2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114075467519388208, guid: d5e947037f70f37479b5acbeab184df2,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4988807784107320, guid: d5e947037f70f37479b5acbeab184df2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114050904684145230, guid: d5e947037f70f37479b5acbeab184df2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: d5e947037f70f37479b5acbeab184df2, type: 2}
@@ -1495,7 +1512,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1058602788698214, guid: d5e947037f70f37479b5acbeab184df2,
     type: 2}
   m_PrefabInternal: {fileID: 252301155}
---- !u!114 &547043351
+--- !u!114 &547043350
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
