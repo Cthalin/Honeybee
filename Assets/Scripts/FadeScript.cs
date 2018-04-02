@@ -6,6 +6,7 @@ public class FadeScript : MonoBehaviour {
 
     private bool _haltIn = false;
     private bool _haltOut = false;
+	public float speedFadeOut = 2;
 
     public void FadeOut()
     {
@@ -28,7 +29,7 @@ public class FadeScript : MonoBehaviour {
             {
                 yield break;
             }
-            canvasGroup.alpha -= Time.deltaTime / 2;
+			canvasGroup.alpha -= Time.deltaTime / speedFadeOut;
             yield return null;
         }
 
